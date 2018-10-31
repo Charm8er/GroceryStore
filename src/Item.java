@@ -6,6 +6,5 @@ public class Item {
 	private int weight;
 	private int stock;
 	
-	Testing Review Branch Commit
 
 }
