@@ -1,4 +1,4 @@
-package fileio;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class fileio
 	public static void main( String[ ] args ) throws IOException
 	{
 		
-		inFile=new java.io.File("StoreItems.txt");
+		inFile=new java.io.File("items.txt");
 		inputFile = new Scanner(inFile);
 		if(!inFile.exists())
 		{
@@ -19,9 +19,11 @@ public class fileio
 		while(inputFile.hasNext())
 		{
 		String name = inputFile.next ( );
+		int itemNum = inputFile.nextInt ( );
 		double price = inputFile.nextDouble ( );
-		double amount =inputFile.nextDouble();
-		System.out.printf ( "%15s%10s%10s\n",name, price, amount );
+		int weight = inputFile.nextInt ( );
+		int stock = inputFile.nextInt ( );
+		System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
 		}
 		inputFile.close ( );
 	}
