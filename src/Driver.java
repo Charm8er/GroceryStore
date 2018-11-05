@@ -44,6 +44,10 @@ public class Driver {
 //		printInventory (chicken); // call printInventory
 
 	} // end of main
+	/********************************************************
+	 * @author Josh, Marcos, Omar
+	 * @param item / the item
+	 ********************************************************/
 	
 	public static void printInventory(Item item)
 	{
