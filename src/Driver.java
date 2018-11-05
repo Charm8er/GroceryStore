@@ -1,3 +1,8 @@
+// Joshua Luttmer, Marcos Del Toro, Omar Arias
+// Grocery Store
+// 11/5/2018
+// Reads in text file with name, item number, price, weight and inventory level.
+
 import java.io.*;
 import java.util.Scanner;
 public class Driver {
@@ -14,16 +19,18 @@ public class Driver {
 			System.out.println ( "file not found" );
 			System.exit(-1);
 		}
+		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
 		
 		while(inputFile.hasNext())
 		{
-		String name = inputFile.next ( );
-		int itemNum = inputFile.nextInt ( );
-		double price = inputFile.nextDouble ( );
-		int weight = inputFile.nextInt ( );
-		int stock = inputFile.nextInt ( );
-		System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
+			String name = inputFile.next ( ); // name of item
+			int itemNum = inputFile.nextInt ( ); // item number/barcode
+			double price = inputFile.nextDouble ( ); // price of item
+			int weight = inputFile.nextInt ( ); // weight of item
+			int stock = inputFile.nextInt ( ); // number of items in stock
+			System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
 		}
+		
 		inputFile.close ( );
 		
 //		Item beef = new Item(); // create item "beef"
@@ -44,3 +51,6 @@ public class Driver {
 	}
  
 } // end of Driver class
+
+
+// Problem getting text file to read in.  Had to remove .txt from file name and move it 1 level above src.
