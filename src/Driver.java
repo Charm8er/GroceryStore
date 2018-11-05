@@ -1,5 +1,5 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Grocery Store
+// Store Program Part 1 
 // 11/5/2018
 // Reads in text file with name, item number, price, weight and inventory level.
 
@@ -26,7 +26,7 @@ public class Driver {
 			String name = inputFile.next ( ); // name of item
 			int itemNum = inputFile.nextInt ( ); // item number/barcode
 			double price = inputFile.nextDouble ( ); // price of item
-			int weight = inputFile.nextInt ( ); // weight of item
+			int weight = inputFile.nextInt ( ); // weight of item in oz
 			int stock = inputFile.nextInt ( ); // number of items in stock
 			System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
 		}
