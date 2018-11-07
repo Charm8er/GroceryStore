@@ -1,7 +1,7 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 1 
+// Store Program Part 2 
 // 11/6/2018
-// Reads in text file with name, item number, price, weight and inventory level.
+// Reads in text file with name, item number, price, weight and inventory level.  Creates item with object1.
 
 import java.io.*;
 import java.util.Scanner;
@@ -75,23 +75,23 @@ public class Driver {
 		int weight; // Item weight in oz
 		int stock; // Quantity in stock
 		
-		System.out.println ( "Enter item's name" );
+		System.out.println ( "\nEnter item name: " );
 		name = input.next ( );
 		object1.setName ( name );
 		
-		System.out.println ( "Enter item #" );
+		System.out.println ( "Enter item #: " );
 		itemNum = input.nextInt ( );
 		object1.setItemNum ( itemNum );
 		
-		System.out.println ( "Enter item's price" );
+		System.out.println ( "Enter item price: " );
 		price = input.nextDouble ( );
 		object1.setPrice ( price );
 		
-		System.out.println ( "Enter item's weight" );
+		System.out.println ( "Enter item weight: " );
 		weight = input.nextInt ( );
 		object1.setWeight ( weight );
 		
-		System.out.println ( "Enter quantity in stock" );
+		System.out.println ( "Enter quantity in stock: " );
 		stock = input.nextInt ( );
 		object1.setStock ( stock );
 		
@@ -104,7 +104,7 @@ public class Driver {
 	public static void printData(Item object1)
 	{
 		System.out.println ( "Name: " + object1.getName ( ) );
-		System.out.println ( "Item#: " + object1.getItemNum ( ) );
+		System.out.println ( "Item #: " + object1.getItemNum ( ) );
 		System.out.println ( "Price: " + object1.getPrice ( ));
 		System.out.println ( "Weight: " + object1.getWeight ( ) );
 		System.out.println ( "Stock: " + object1.getStock ( ) );
