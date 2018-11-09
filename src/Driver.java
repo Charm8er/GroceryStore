@@ -1,9 +1,15 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Store Program Part 1 
 // 11/8/2018
 // Reads in text file with name, item number, price, weight and inventory level.
+=======
+// Store Program Part 2 
+// 11/6/2018
+// Reads in text file with name, item number, price, weight and inventory level.  Creates item with object1.
+>>>>>>> fbcd7844e6fbc9e46c269196c0d013d6b94e91de
 =======
 // Store Program Part 2 
 // 11/6/2018
@@ -129,6 +135,9 @@ public class Driver {
 		System.out.println ( "Name: " + object1.getName ( ) );
 		System.out.println ( "Item #: " + object1.getItemNum ( ) );
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> fbcd7844e6fbc9e46c269196c0d013d6b94e91de
+=======
 >>>>>>> fbcd7844e6fbc9e46c269196c0d013d6b94e91de
 =======
 >>>>>>> fbcd7844e6fbc9e46c269196c0d013d6b94e91de
