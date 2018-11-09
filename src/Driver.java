@@ -124,7 +124,6 @@ public class Driver {
 	public static void importList(Item [] groceryArray) 
 	{
 		Item arrayObject = new Item (); // Declaring object of item type, used to fill array
-		Item newItem = new Item(); // Declaring Item object
 		int index = 0; // array location
 		char addItem = 'y'; // LCV
 		if(!inFile.exists())
@@ -151,7 +150,8 @@ public class Driver {
 			} // end WHILE hasNext
 			
 			while (addItem == 'y') // Author Josh
-			{						
+			{	
+				Item newItem = new Item(); // Declaring Item object
 				System.out.println("\nAdd item manually? (y or n): ");
 				addItem = input.next().charAt(0);
 				if (addItem == 'y')
