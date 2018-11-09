@@ -3,7 +3,6 @@
 // 11/8/2018
 // Reads in text file with name, item number, price, weight and inventory level.
 
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -103,16 +102,19 @@ public class Driver {
 	} // end printData
 	
 	/******************************************************************************************************
-	 * @author Omar , Josh, Marcos
-	 * This method prints the array
+	 * @author Josh , Omar, Marcos
+	 * This method prints the full array unless null
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
 	public static void printArray (Item [] groceryArray)
 	{
-		int arrayLength = groceryArray.length; // LCV for array length
-		for (int index = 0; index < arrayLength; index ++)
-		{
-			System.out.println ( groceryArray [index] );
+//		int arrayLength = groceryArray.length; // LCV for array length
+		for (int index = 0; index < MAX; index ++)
+		{	
+			if (groceryArray [index] != null)
+			{
+				System.out.println ( groceryArray [index] );
+			} // end IF null
 		} // end FOR index loc
 	} // end printArray
 	
@@ -160,7 +162,6 @@ public class Driver {
 					index++;					
 				} // end IF addItem y
 			} //end 2nd WHILE addItem y
-
 		} // end WHILE addItem y
 
 		inputFile.close ();
