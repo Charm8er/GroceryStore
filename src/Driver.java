@@ -1,7 +1,7 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 3 
-// 11/8/2018
-// Reads in text file with name, item number, price, weight and inventory level.
+// Store Program Part 4 
+// 11/9/2018
+// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.
 
 import java.io.*;
 import java.util.Scanner;
@@ -20,9 +20,9 @@ public class Driver {
 		
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
-		printArray (groceryArray);
+		groceryMenu (groceryArray);
 	
-		
+//		printArray (groceryArray);
 //		createObject (object1);
 //		printData(newItem);			
 //		Item beef = new Item(); // create item "beef"
@@ -167,30 +167,29 @@ public class Driver {
 
 		inputFile.close ();
 	}
-<<<<<<< HEAD
+
 	
 	/******************************************************************************************************
 	 * @author Josh , Omar, Marcos
 	 * This method reads the groceryArray and displays a list for selection by customer.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
-	public static void groceryMenu (Item [] groceryArray )
+	public static void groceryMenu ( Item [] groceryArray ) // Author Marcos, Contributor Josh
 	{
-		System.out.println("\n----------------         GROCERY MENU         ----------------");
-		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
+		System.out.println("\n--------   GROCERY MENU   --------");
+		System.out.printf ( "%10s%10s%10s\n","Name", "Item #", "Price" );
 		for (int i = 0; i < MAX; i++)
 		{
 			if (groceryArray [i] != null)
 			{
-				System.out.println ( groceryArray[i] );
-//				System.out.println ( groceryArray[i].toString ( ));
-// I tried several different things here but couldn't come up with a solution to make it print more like the printData method...
-	
-			}
-		}
-	}
-=======
->>>>>>> 7bc15c585424029b521735b67cbe37cdb2a0cdae
+				System.out.printf("%10s%10s%10s\n",
+				groceryArray[i].getName(),
+				groceryArray[i].getItemNum(),
+				groceryArray[i].getPrice());
+			} // end IF != null
+		} // end FOR array loop
+	} // end groceryMenu
+
 } // end of Driver class
 
 
