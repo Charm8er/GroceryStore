@@ -178,6 +178,7 @@ public class Driver {
 	{
 		System.out.println("\n--------   GROCERY MENU   --------\n");
 		System.out.printf ( "%10s%10s%10s\n","Name", "Item #", "Price" );
+		System.out.println( " " );
 		for (int i = 0; i < MAX; i++)
 		{
 			if (groceryArray [i] != null)
