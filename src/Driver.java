@@ -1,8 +1,8 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 4 
-// 11/9/2018
-// Reads in text file with name, item number, price, weight and inventory level. Updated to add a menu for item selection.
- 
+// Store Program Part 3 
+// 11/8/2018
+// Reads in text file with name, item number, price, weight and inventory level.
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class Driver {
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
 		printArray (groceryArray);
-		groceryMenu (groceryArray);
+	
 		
 //		createObject (object1);
 //		printData(newItem);			
@@ -109,7 +109,6 @@ public class Driver {
 	 ******************************************************************************************************/
 	public static void printArray (Item [] groceryArray)
 	{
-//		System.out.println( "\n***** DEBUG ***** ARRAY ***** ");
 //		int arrayLength = groceryArray.length; // LCV for array length
 		for (int index = 0; index < MAX; index ++)
 		{	
@@ -168,6 +167,7 @@ public class Driver {
 
 		inputFile.close ();
 	}
+<<<<<<< HEAD
 	
 	/******************************************************************************************************
 	 * @author Josh , Omar, Marcos
@@ -189,6 +189,8 @@ public class Driver {
 			}
 		}
 	}
+=======
+>>>>>>> 7bc15c585424029b521735b67cbe37cdb2a0cdae
 } // end of Driver class
 
 
