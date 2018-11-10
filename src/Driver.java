@@ -1,8 +1,8 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 4 
-// 11/9/2018
-// Reads in text file with name, item number, price, weight and inventory level. Updated to add a menu for item selection.
- 
+// Store Program Part 3 
+// 11/8/2018
+// Reads in text file with name, item number, price, weight and inventory level.
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class Driver {
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
 		printArray (groceryArray);
-		groceryMenu (groceryArray);
+	
 		
 //		createObject (object1);
 //		printData(newItem);			
@@ -109,7 +109,6 @@ public class Driver {
 	 ******************************************************************************************************/
 	public static void printArray (Item [] groceryArray)
 	{
-//		System.out.println( "\n***** DEBUG ***** ARRAY ***** ");
 //		int arrayLength = groceryArray.length; // LCV for array length
 		for (int index = 0; index < MAX; index ++)
 		{	
@@ -167,26 +166,6 @@ public class Driver {
 		} // end WHILE addItem y
 
 		inputFile.close ();
-	}
-	
-	/******************************************************************************************************
-	 * @author Josh , Omar, Marcos
-	 * This method imports "item" list and displays a list for selection.
-	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
-	 ******************************************************************************************************/
-	public static void groceryMenu (Item [] groceryArray )
-	{
-		System.out.println("\n----------------         GROCERY MENU         ----------------");
-		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
-		for (int i = 0; i < MAX; i++)
-		{
-			if (groceryArray [i] != null)
-			{
-				System.out.println ( groceryArray[i] );
-//				System.out.println ( groceryArray[i].toString ( ));
-	
-			}
-		}
 	}
 } // end of Driver class
 
