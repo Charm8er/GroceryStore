@@ -177,8 +177,7 @@ public class Driver {
 	public static void groceryMenu ( Item [] groceryArray ) // Author Marcos, Contributor Josh
 	{
 		System.out.println("\n--------   GROCERY MENU   --------\n");
-		System.out.printf ( "%10s%10s%10s\n","Name", "Item #", "Price" );
-		System.out.println( " " );
+		System.out.printf ( "%10s%10s%10s\n","Name", "Item #", "Price\n" );
 		for (int i = 0; i < MAX; i++)
 		{
 			if (groceryArray [i] != null)
