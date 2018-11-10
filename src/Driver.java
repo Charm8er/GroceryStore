@@ -171,7 +171,7 @@ public class Driver {
 	
 	/******************************************************************************************************
 	 * @author Josh , Omar, Marcos
-	 * This method imports "item" list and displays a list for selection.
+	 * This method reads the groceryArray and displays a list for selection by customer.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
 	public static void groceryMenu (Item [] groceryArray )
@@ -184,6 +184,7 @@ public class Driver {
 			{
 				System.out.println ( groceryArray[i] );
 //				System.out.println ( groceryArray[i].toString ( ));
+// I tried several different things here but couldn't come up with a solution to make it print more like the printData method...
 	
 			}
 		}
