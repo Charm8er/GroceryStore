@@ -21,6 +21,7 @@ public class Driver {
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
 		groceryMenu (groceryArray);
+		puchaseGrocery(groceryArray);
 	
 //		printArray (groceryArray);
 //		createObject (object1);
@@ -135,7 +136,7 @@ public class Driver {
 			System.exit(-1);
 		}
 		
-		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
+//		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
 		
 		while(addItem == 'y') // Author Josh
 		{			
@@ -146,7 +147,7 @@ public class Driver {
 				double price = inputFile.nextDouble ( ); // price of item
 				int weight = inputFile.nextInt ( ); // weight of item in oz
 				int stock = inputFile.nextInt ( ); // number of items in stock
-				System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
+//				System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
 				arrayObject = new Item (name, itemNum, price, weight, stock);
 				groceryArray [index] = arrayObject;
 				index ++;
@@ -177,12 +178,13 @@ public class Driver {
 	public static void groceryMenu ( Item [] groceryArray ) // Author Marcos, Contributor Josh
 	{
 		System.out.println("\n--------   GROCERY MENU   --------\n");
-		System.out.printf ( "%10s%10s%10s\n","Name", "Item #", "Price\n" );
+		System.out.printf ( "%10s%10s%10s%10s\n","Menu #","Name", "Item #", "Price\n" );
 		for (int i = 0; i < MAX; i++)
 		{
 			if (groceryArray [i] != null)
 			{
-				System.out.printf("%10s%10s%10s\n",
+				System.out.printf("%10s%10s%10s%10s\n",
+				i + 1,		
 				groceryArray[i].getName(),
 				groceryArray[i].getItemNum(),
 				groceryArray[i].getPrice());
@@ -190,6 +192,38 @@ public class Driver {
 		} // end FOR array loop
 	} // end groceryMenu
 
+	/******************************************************************************************************
+	 * @author Josh , Omar, Marcos
+	 * This method allows the customer to add items to their order.
+	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
+	 ******************************************************************************************************/
+	public static void puchaseGrocery( Item [] groceryArray ) // Author Josh
+	{
+		char orderItem = 'n';
+		int addToOrder = 0;
+		int quantityToOrder = 0;
+		System.out.println("Add item to order?: ");
+		orderItem = input.next().charAt(0);
+		if (orderItem == 'y')
+		{
+			System.out.println("Enter Menu #: ");
+			addToOrder = input.nextInt();
+			addToOrder -= 1;
+			if (groceryArray [addToOrder] != null)
+			{
+				System.out.printf("%10s%10s%10s\n",
+				groceryArray[addToOrder].getName(),
+				groceryArray[addToOrder].getItemNum(),
+				groceryArray[addToOrder].getPrice());
+			} // end IF != null
+			System.out.println("Enter Quantity: ");
+			quantityToOrder = input.nextInt();
+		}
+		else
+		{
+			System.out.println("You must select a menu item to place an order. ");
+		}
+	}
 } // end of Driver class
 
 
