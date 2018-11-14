@@ -200,11 +200,11 @@ public class Driver {
 	 ******************************************************************************************************/
 	public static void puchaseGrocery( Item [] groceryArray ) // Author Josh
 	{
-		char orderItem = 'n';
-		int addToOrder = 0;
-		int quantityToOrder = 0;
-		double itemOrderTotal = 0;
-		int newStock = 0;
+		char orderItem = 'n'; // for order item y or n
+		int addToOrder = 0; // menu item to add to order
+		int quantityToOrder = 0; // quantity of item to order
+		double itemOrderTotal = 0; // order total for item
+		int newStock = 0; // new stock level after order is placed
 		System.out.println("\nAdd item to order?: ");
 		orderItem = input.next().charAt(0);
 		if (orderItem == 'y')
@@ -235,7 +235,7 @@ public class Driver {
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
 		
-	}
+	} // end purchaseGrocery
 } // end of Driver class
 
 
