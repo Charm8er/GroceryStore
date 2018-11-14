@@ -202,7 +202,7 @@ public class Driver {
 		char orderItem = 'n';
 		int addToOrder = 0;
 		int quantityToOrder = 0;
-		System.out.println("Add item to order?: ");
+		System.out.println("\nAdd item to order?: ");
 		orderItem = input.next().charAt(0);
 		if (orderItem == 'y')
 		{
@@ -216,7 +216,7 @@ public class Driver {
 				groceryArray[addToOrder].getItemNum(),
 				groceryArray[addToOrder].getPrice());
 			} // end IF != null
-			System.out.println("Enter Quantity: ");
+			System.out.println("\nEnter Quantity: ");
 			quantityToOrder = input.nextInt();
 		}
 		else
