@@ -22,6 +22,7 @@ public class Driver {
 		importList(groceryArray);
 		groceryMenu (groceryArray);
 		puchaseGrocery(groceryArray);
+		printArray(groceryArray);
 	
 //		printArray (groceryArray);
 //		createObject (object1);
@@ -202,6 +203,8 @@ public class Driver {
 		char orderItem = 'n';
 		int addToOrder = 0;
 		int quantityToOrder = 0;
+		double itemOrderTotal = 0;
+		int newStock = 0;
 		System.out.println("\nAdd item to order?: ");
 		orderItem = input.next().charAt(0);
 		if (orderItem == 'y')
@@ -222,7 +225,16 @@ public class Driver {
 		else
 		{
 			System.out.println("You must select a menu item to place an order. ");
-		}
+		} // end ELSE
+		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
+		System.out.printf("%10s%10s%10s%10s\n","Order Total: ", 				
+		groceryArray[addToOrder].getName(),
+		groceryArray[addToOrder].getItemNum(),
+		itemOrderTotal);
+		groceryArray[addToOrder].getStock();
+		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
+		groceryArray[addToOrder].setStock(newStock);
+		
 	}
 } // end of Driver class
 
