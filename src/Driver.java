@@ -205,8 +205,14 @@ public class Driver {
 		int quantityToOrder = 0; // quantity of item to order
 		double itemOrderTotal = 0; // order total for item
 		int newStock = 0; // new stock level after order is placed
+		int salesIfInStock = 0;
+		int stock = 0;
+		
 		System.out.println("\nAdd item to order?: ");
 		orderItem = input.next().charAt(0);
+		
+		do
+		{
 		if (orderItem == 'y')
 		{
 			System.out.println("Enter Menu #: ");
@@ -226,6 +232,17 @@ public class Driver {
 		{
 			System.out.println("You must select a menu item to place an order. ");
 		} // end ELSE
+		if (quantityToOrder > groceryArray [addToOrder].getStock ( ))
+		{
+			stock = groceryArray[addToOrder].getStock ( );
+			salesIfInStock = quantityToOrder - stock;
+			System.out.println ( "We dont have that much in stock, we only have: " + stock);
+			groceryArray[addToOrder].getStock ( );
+			System.out.println ( "Please select a valid quantity" );
+			quantityToOrder = input.nextInt ( );
+			
+		}
+		
 		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
 		System.out.printf("%10s%10s%10s%10s\n","Order Total: ", 				
 		groceryArray[addToOrder].getName(),
@@ -235,6 +252,11 @@ public class Driver {
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
 		
+		System.out.println ( "Would you like to buy another item?" );
+		orderItem = input.next().charAt ( 0 );
+		}while (orderItem == 'y');
+		System.out.println ( "Thank you for shopping with us, please come again!" );
+		System.out.println ( "Potential sales if items were in stock: " + salesIfInStock );
 	} // end purchaseGrocery
 } // end of Driver class
 
