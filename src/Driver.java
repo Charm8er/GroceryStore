@@ -1,7 +1,7 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 4 
-// 11/9/2018
-// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.
+// Store Program Part 5 
+// 11/14/2018
+// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.  Added ability to purchase items with total price.
 
 import java.io.*;
 import java.util.Scanner;
@@ -198,17 +198,18 @@ public class Driver {
 	 * This method allows the customer to add items to their order.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
-	public static void puchaseGrocery( Item [] groceryArray ) // Author Josh
+	public static void puchaseGrocery( Item [] groceryArray ) // Author Josh, Contributor Omar
 	{
 		char orderItem = 'n'; // for order item y or n
 		int addToOrder = 0; // menu item to add to order
 		int quantityToOrder = 0; // quantity of item to order
 		double itemOrderTotal = 0; // order total for item
+		double grandTotal = 0;
 		int newStock = 0; // new stock level after order is placed
 		int salesIfInStock = 0;
 		int stock = 0;
 		
-		System.out.println("\nAdd item to order?: ");
+		System.out.println("\nAdd item to order? (y or n): ");
 		orderItem = input.next().charAt(0);
 		
 		do
@@ -236,9 +237,9 @@ public class Driver {
 		{
 			stock = groceryArray[addToOrder].getStock ( );
 			salesIfInStock = quantityToOrder - stock;
-			System.out.println ( "We dont have that much in stock, we only have: " + stock);
+			System.out.println ( "\nInsufficent inventory to complete your order. " + stock + " " + groceryArray[addToOrder].getName ( ) +" currently in stock.");
 			groceryArray[addToOrder].getStock ( );
-			System.out.println ( "Please select a valid quantity" );
+			System.out.println ( "\nPlease enter a valid quantity: " );
 			quantityToOrder = input.nextInt ( );
 			
 		}
@@ -252,11 +253,13 @@ public class Driver {
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
 		
-		System.out.println ( "Would you like to buy another item?" );
+		System.out.println ( "Would you like to buy another item? (y or n): " );
 		orderItem = input.next().charAt ( 0 );
+		grandTotal += itemOrderTotal;
 		}while (orderItem == 'y');
-		System.out.println ( "Thank you for shopping with us, please come again!" );
-		System.out.println ( "Potential sales if items were in stock: " + salesIfInStock );
+		System.out.println("\nYour order total is: $" + grandTotal);
+		System.out.println ( "\nThank you for shopping with us, please come again!" );
+		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
 	} // end purchaseGrocery
 } // end of Driver class
 
