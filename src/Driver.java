@@ -240,9 +240,8 @@ public class Driver {
 			System.out.println ( "\nInsufficent inventory to complete your order. " + stock + " " + groceryArray[addToOrder].getName ( ) +" currently in stock.");
 			groceryArray[addToOrder].getStock ( );
 			System.out.println ( "\nPlease enter a valid quantity: " );
-			quantityToOrder = input.nextInt ( );
-			
-		}
+			quantityToOrder = input.nextInt ( );		
+		} // end IF order qty > qty in stock
 		
 		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
 		System.out.printf("%10s%10s%10s%10s\n","Order Total: ", 				
@@ -256,7 +255,7 @@ public class Driver {
 		System.out.println ( "Would you like to buy another item? (y or n): " );
 		orderItem = input.next().charAt ( 0 );
 		grandTotal += itemOrderTotal;
-		}while (orderItem == 'y');
+		}while (orderItem == 'y'); // end DO WHILE orderItem y
 		System.out.println("\nYour order total is: $" + grandTotal);
 		System.out.println ( "\nThank you for shopping with us, please come again!" );
 		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
