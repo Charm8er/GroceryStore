@@ -255,7 +255,7 @@ public class Driver {
 		orderItem = input.next().charAt ( 0 );
 		grandTotal += itemOrderTotal;
 		}while (orderItem == 'y'); // end DO WHILE orderItem y
-		System.out.println("\nYour order total is: $" + grandTotal);
+		System.out.printf ("%10s%1.2f", "\nYour order total is: $", grandTotal);
 		System.out.println ( "\nThank you for shopping with us, please come again!" );
 		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
 	} // end purchaseGrocery
