@@ -243,11 +243,13 @@ public class Driver {
 		} // end IF order qty > qty in stock
 		
 		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
-		System.out.printf("%10s%10s%10s%10.2f\n","Order Total: ", 				
+		System.out.printf("%10s%10s%10s%10.2f\n",
+		"Order Total: ", 				
 		groceryArray[addToOrder].getName(),
 		groceryArray[addToOrder].getItemNum(),
 		itemOrderTotal);
 		groceryArray[addToOrder].getStock();
+		
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
 		
