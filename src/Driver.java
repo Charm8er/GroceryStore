@@ -204,10 +204,10 @@ public class Driver {
 		int addToOrder = 0; // menu item to add to order
 		int quantityToOrder = 0; // quantity of item to order
 		double itemOrderTotal = 0; // order total for item
-		double grandTotal = 0;
+		double grandTotal = 0; // grand total for all items in this order
 		int newStock = 0; // new stock level after order is placed
-		int salesIfInStock = 0;
-		int stock = 0;
+		int salesIfInStock = 0; // amount that could have sold if in stock
+		int stock = 0; // current stock level of item
 		
 		System.out.println("\nAdd item to order? (y or n): ");
 		orderItem = input.next().charAt(0);
