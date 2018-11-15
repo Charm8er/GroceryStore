@@ -170,7 +170,6 @@ public class Driver {
 		inputFile.close ();
 	}
 
-	
 	/******************************************************************************************************
 	 * @author Josh , Omar, Marcos
 	 * This method reads the groceryArray and displays a list for selection by customer.
@@ -184,7 +183,7 @@ public class Driver {
 		{
 			if (groceryArray [i] != null)
 			{
-				System.out.printf("%10s%10s%10s%10s\n",
+				System.out.printf("%10s%10s%10s%10.2f\n",
 				i + 1,		
 				groceryArray[i].getName(),
 				groceryArray[i].getItemNum(),
@@ -221,7 +220,7 @@ public class Driver {
 			addToOrder -= 1;
 			if (groceryArray [addToOrder] != null)
 			{
-				System.out.printf("%10s%10s%10s\n",
+				System.out.printf("%10s%10s%10.2f\n",
 				groceryArray[addToOrder].getName(),
 				groceryArray[addToOrder].getItemNum(),
 				groceryArray[addToOrder].getPrice());
@@ -244,7 +243,7 @@ public class Driver {
 		} // end IF order qty > qty in stock
 		
 		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
-		System.out.printf("%10s%10s%10s%10s\n","Order Total: ", 				
+		System.out.printf("%10s%10s%10s%10.2f\n","Order Total: ", 				
 		groceryArray[addToOrder].getName(),
 		groceryArray[addToOrder].getItemNum(),
 		itemOrderTotal);
