@@ -17,12 +17,25 @@ public class Driver {
 		input = new Scanner (System.in);
 		inFile = new java.io.File("items");
 		inputFile = new Scanner(inFile);
-		
+		char party = 'y';
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
-		groceryMenu (groceryArray);
-		puchaseGrocery(groceryArray);
-		printArray(groceryArray);
+		
+		
+		while (party == 'y')
+		{
+			groceryMenu (groceryArray);
+			puchaseGrocery(groceryArray);
+			
+			System.out.println ( "Is there another party?" );
+			party = input. next().charAt ( 0 );
+			
+		}
+		
+		
+		
+	//	puchaseGrocery(groceryArray);
+	//	printArray(groceryArray);
 	
 //		printArray (groceryArray);
 //		createObject (object1);
