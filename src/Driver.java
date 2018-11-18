@@ -1,7 +1,7 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 5 
-// 11/14/2018
-// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.  Added ability to purchase items with total price.
+// Store Program Part 6 
+// 11/16/2018
+// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.  Added ability to purchase items with total price. Added groupPurchase method for multiple orders on one bill.
 
 import java.io.*;
 import java.util.Scanner;
@@ -20,11 +20,11 @@ public class Driver {
 		
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
-		
-//		puchaseGrocery(groceryArray);
 		double totalOrder = groupPurchase(groceryArray);
 		System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
-	
+		
+		
+//		puchaseGrocery(groceryArray);
 //		printArray (groceryArray);
 //		createObject (object1);
 //		printData(newItem);			
@@ -284,7 +284,6 @@ public class Driver {
 			groupOrder --;
 		} while (groupOrder > 0); // end DO WHILE
 		return totalOrder;
-
 	}
 } // end of Driver class
 
