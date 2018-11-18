@@ -20,9 +20,10 @@ public class Driver {
 		
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
 		importList(groceryArray);
-		groceryMenu (groceryArray);
-		puchaseGrocery(groceryArray);
-		printArray(groceryArray);
+		
+//		puchaseGrocery(groceryArray);
+		double totalOrder = groupPurchase(groceryArray);
+		System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
 	
 //		printArray (groceryArray);
 //		createObject (object1);
@@ -197,7 +198,7 @@ public class Driver {
 	 * This method allows the customer to add items to their order.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
-	public static void puchaseGrocery( Item [] groceryArray ) // Author Josh, Contributor Omar
+	public static double puchaseGrocery( Item [] groceryArray, int groupOrder ) // Author Josh, Contributor Omar
 	{
 		char orderItem = 'n'; // for order item y or n
 		int addToOrder = 0; // menu item to add to order
@@ -208,12 +209,15 @@ public class Driver {
 		int salesIfInStock = 0; // amount that could have sold if in stock
 		int stock = 0; // current stock level of item
 		
+		groceryMenu (groceryArray);
+		
+		System.out.println("\nShopping List #" + groupOrder);
 		System.out.println("\nAdd item to order? (y or n): ");
 		orderItem = input.next().charAt(0);
 		
 		do
 		{
-		if (orderItem == 'y')
+			if (orderItem == 'y')
 		{
 			System.out.println("Enter Menu #: ");
 			addToOrder = input.nextInt();
@@ -253,14 +257,35 @@ public class Driver {
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
 		
-		System.out.println ( "Would you like to buy another item? (y or n): " );
+		System.out.println ( "\nWould you like to buy another item? (y or n): " );
 		orderItem = input.next().charAt ( 0 );
 		grandTotal += itemOrderTotal;
 		}while (orderItem == 'y'); // end DO WHILE orderItem y
 		System.out.printf ("%10s%1.2f", "\nYour order total is: $", grandTotal);
 		System.out.println ( "\nThank you for shopping with us, please come again!" );
 		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
+		return grandTotal;
 	} // end purchaseGrocery
+	
+	/******************************************************************************************************
+	 * @author Josh , Omar, Marcos
+	 * This method allows the one customer to pay for multiple orders.
+	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
+	 ******************************************************************************************************/
+	public static double groupPurchase( Item [] groceryArray ) // Author Josh
+	{
+		int groupOrder = 1;
+		double totalOrder = 0;
+		System.out.println ("\nHow many seperate orders on this bill?: ");
+		groupOrder = input.nextInt();
+		do 
+		{
+			totalOrder += puchaseGrocery(groceryArray, groupOrder);
+			groupOrder --;
+		} while (groupOrder > 0); // end DO WHILE
+		return totalOrder;
+
+	}
 } // end of Driver class
 
 
