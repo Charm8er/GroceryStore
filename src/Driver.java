@@ -11,22 +11,21 @@ public class Driver {
 	static Scanner input;
 	public static Scanner inputFile;
 	public static java.io.File inFile;
-	public static final int MAX = 20;
+	public static final int MAX = 20; // Declaring and initializing constant MAX
 	public static void main(String[] args) throws IOException
 	{
 		input = new Scanner (System.in);
 		inFile = new java.io.File("items");
 		inputFile = new Scanner(inFile);
-		char party = 'y';
+		char party = 'y'; // Holds char if there is a party y (yes) or n (no) 
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
-		importList(groceryArray);
+		importList(groceryArray); // Fills array with values from text file
 		
-		
+		// Author Omar, contributor Marcos
 		while (party == 'y')
 		{
-			groceryMenu (groceryArray);
-			puchaseGrocery(groceryArray);
-			
+			groceryMenu (groceryArray); // Prints the grocery menu
+			puchaseGrocery(groceryArray); // Method used to go through the purchasing process
 			System.out.println ( "Is there another party?" );
 			party = input. next().charAt ( 0 );
 			
