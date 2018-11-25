@@ -23,6 +23,7 @@ public class Driver {
 		double totalOrder = groupPurchase(groceryArray);
 		System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
 		
+		getManagerReport (groceryArray);
 		
 //		puchaseGrocery(groceryArray);
 //		printArray (groceryArray);
@@ -284,7 +285,36 @@ public class Driver {
 			groupOrder --;
 		} while (groupOrder > 0); // end DO WHILE
 		return totalOrder;
-	}
+	} // End groupPurchase
+	
+	public static void getManagerReport (Item [] groceryArray)
+	{
+		char view;
+		String password;
+		
+		System.out.println ( "\nWould you like to see the manager's report?" );
+		view = input.next ( ).charAt ( 0 );
+		
+		if (view == 'y')
+		{
+			System.out.println ( "Enter password:" );
+			password = input.next ( );
+	
+			
+			if (password. equals("CSC160"))
+			{
+				System.out.println ( "Access Granted" );
+				System.out.println ( "Printing inventory:" );
+				printArray (groceryArray);
+			}
+			else
+			{
+				System.out.println ( "Access Denied" );
+			}
+			
+		}
+	} // End getManagerReport
+	
 } // end of Driver class
 
 
