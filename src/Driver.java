@@ -286,7 +286,10 @@ public class Driver {
 		} while (groupOrder > 0); // end DO WHILE
 		return totalOrder;
 	} // End groupPurchase
-	
+	/*******************************************************************************************************
+	 * @author Omar
+	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
+	 *******************************************************************************************************/
 	public static void getManagerReport (Item [] groceryArray)
 	{
 		char view;
@@ -300,7 +303,6 @@ public class Driver {
 			System.out.println ( "Enter password:" );
 			password = input.next ( );
 	
-			
 			if (password. equals("CSC160"))
 			{
 				System.out.println ( "Access Granted" );
@@ -310,8 +312,7 @@ public class Driver {
 			else
 			{
 				System.out.println ( "Access Denied" );
-			}
-			
+			}	
 		}
 	} // End getManagerReport
 	
