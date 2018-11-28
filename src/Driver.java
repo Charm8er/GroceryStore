@@ -315,6 +315,8 @@ public class Driver {
 	public static void getManagerReport (Item [] groceryArray)
 	{
 		char view; // variable for IF
+		char addInventory; // variable for IF add inventory
+		int importManual; // variable for IF import or manual input
 		String password; // manager password
 		
 		System.out.println ( "\nWould you like to see the manager's report? (y or n): " );
@@ -330,11 +332,28 @@ public class Driver {
 				System.out.println ( "Access Granted" );
 				System.out.println ( "Printing inventory:" );
 				printArray (groceryArray);
+				System.out.println ( "Add more inventory? (y or n): " );
+				addInventory = input.next ( ).charAt ( 0 );
+				if (addInventory == 'y')
+				{
+					System.out.println ( "Import File (1) or Add manually (2)?: " );
+					importManual = input.nextInt();
+					if (importManual == 1 )				
+					{
+						System.out.println ( "Importing inventory:" );
+						importList(groceryArray);
+					}
+					else if (importManual == 2)
+					{
+						
+					}
+						
+				} // end IF addInventory
 			} // end IF password
 			else
 			{
 				System.out.println ( "Access Denied" );
-			}// end ELSE
+			} // end ELSE
 		} // end IF view 'yes'
 	} // End getManagerReport
 	
@@ -345,7 +364,7 @@ public class Driver {
 	 *******************************************************************************************************/
 	public static void systemStartup (Item [] groceryArray)
 	{
-		char importInventory; // variable for IF
+		char importInventory; // variable for IF import inventory
 		String password; // manager password
 		
 		System.out.println ( "\nImport Inventory? (y or n): ");
