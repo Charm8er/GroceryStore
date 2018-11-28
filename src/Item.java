@@ -7,6 +7,7 @@ public class Item
 	private double price;
 	private int weight;
 	private int stock;
+	private int negStock;
 	
 	/**************************************************************
 	 * @author Josh, Marcos, Omar
@@ -19,6 +20,7 @@ public class Item
 		price = 0.00; // sales price of item default
 		weight = 0; // item weight in oz default
 		stock = -100; // amount of item in inventory default
+		negStock = 0; // amount that could have sold if inventory was available
 	} // end Item Defaults
 
 	/**************************************************************
@@ -29,7 +31,7 @@ public class Item
 	 * @param weight // item weight in oz
 	 * @param stock // amount of item in inventory
 	 **************************************************************/
-	public Item(String name, int itemNum, double price, int weight, int stock) 
+	public Item(String name, int itemNum, double price, int weight, int stock, int negStock) 
 	{
 		super();
 		this.name = name;
@@ -37,6 +39,7 @@ public class Item
 		this.price = price;
 		this.weight = weight;
 		this.stock = stock;
+		this.negStock = negStock;
 	} // end Item
 
 	/* (non-Javadoc)
@@ -46,7 +49,7 @@ public class Item
 	public String toString() 
 	{
 		return "Item [name=" + name + ", itemNum=" + itemNum + ", price=" + price + ", weight=" + weight + ", stock="
-				+ stock + "]";
+				+ stock + ", negStock=" + negStock +" ]";
 	} // end toString
 
 	/***********************************************************
@@ -145,5 +148,24 @@ public class Item
 	{
 		this.stock = stock;
 	} // end setStock
+
+	/***************************************************************
+	 * @author Josh
+	 * @param negstock / the negative stock/backorder to get
+	 ***************************************************************/
+	public int getNegStock() 
+	{
+		return negStock;
+	} // end get negStock
+
+	/***************************************************************
+	 * @author Josh
+	 * @param negStock / the negative stock/backorder to set
+	 ***************************************************************/
+	public void setNegStock(int negStock) 
+	{
+		this.negStock = negStock;
+	} // end set negStock
+	
 	
 } // end of Item class
