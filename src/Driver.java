@@ -1,7 +1,7 @@
 // Joshua Luttmer, Marcos Del Toro, Omar Arias
-// Store Program Part 6 
-// 11/16/2018
-// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.  Added ability to purchase items with total price. Added groupPurchase method for multiple orders on one bill.
+// Store Program Part 7 
+// 11/30/2018
+// Reads in text file with name, item number, price, weight and inventory level.  Added Grocery Menu.  Added ability to purchase items with total price. Added groupPurchase method for multiple orders on one bill.  Added manager report and other tools.
 
 import java.io.*;
 import java.util.Scanner;
@@ -14,16 +14,28 @@ public class Driver {
 	public static final int MAX = 20;
 	public static void main(String[] args) throws IOException
 	{
+		char startPOS;
 		input = new Scanner (System.in);
 		inFile = new java.io.File("items");
 		inputFile = new Scanner(inFile);
 		
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
-		importList(groceryArray);
-		double totalOrder = groupPurchase(groceryArray);
-		System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
+		systemStartup (groceryArray);
+		
+		System.out.println( "Start POS System? (y or n): ");
+		startPOS = input.next ( ).charAt ( 0 );
+		if (startPOS == 'y')
+		{
+			double totalOrder = groupPurchase(groceryArray);
+			System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
+		}
+		else
+		{
+			getManagerReport (groceryArray);
+		}
 		
 		getManagerReport (groceryArray);
+		
 		
 //		puchaseGrocery(groceryArray);
 //		printArray (groceryArray);
@@ -62,6 +74,7 @@ public class Driver {
 		double price; // Item price
 		int weight; // Item weight in oz
 		int stock; // Quantity in stock
+		int negStock; // Quantity in stock negative/backorder
 		
 		System.out.println ( "\nEnter item name: " );
 		name = input.next ( );
@@ -82,6 +95,10 @@ public class Driver {
 		System.out.println ( "Enter quantity in stock: " );
 		stock = input.nextInt ( );
 		newItem.setStock ( stock );
+		
+		System.out.println ( "Enter negative stock/backorder quantity: " );
+		negStock = input.nextInt ( );
+		newItem.setNegStock ( negStock );
 		
 		return newItem;
 		
@@ -104,6 +121,7 @@ public class Driver {
 		System.out.println ( "Price: " + object1.getPrice ( ));
 		System.out.println ( "Weight: " + object1.getWeight ( ));
 		System.out.println ( "Stock: " + object1.getStock ( ));
+		System.out.println ( "Negative Stock: " + object1.getNegStock ( ));
 	} // end printData
 	
 	/******************************************************************************************************
@@ -150,8 +168,9 @@ public class Driver {
 				double price = inputFile.nextDouble ( ); // price of item
 				int weight = inputFile.nextInt ( ); // weight of item in oz
 				int stock = inputFile.nextInt ( ); // number of items in stock
-//				System.out.printf ( "%15s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock );
-				arrayObject = new Item (name, itemNum, price, weight, stock);
+				int negStock = inputFile.nextInt ( ); // number of items in negative stock
+//				System.out.printf ( "%15s%10s%10s%10s%10s%10s\n",name, itemNum, price, weight, stock, negative stock );
+				arrayObject = new Item (name, itemNum, price, weight, stock, negStock);
 				groceryArray [index] = arrayObject;
 				index ++;
 			} // end WHILE hasNext
@@ -257,6 +276,7 @@ public class Driver {
 		
 		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
 		groceryArray[addToOrder].setStock(newStock);
+		groceryArray[addToOrder].setNegStock(salesIfInStock);
 		
 		System.out.println ( "\nWould you like to buy another item? (y or n): " );
 		orderItem = input.next().charAt ( 0 );
@@ -264,7 +284,7 @@ public class Driver {
 		}while (orderItem == 'y'); // end DO WHILE orderItem y
 		System.out.printf ("%10s%1.2f", "\nYour order total is: $", grandTotal);
 		System.out.println ( "\nThank you for shopping with us, please come again!" );
-		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
+//		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
 		return grandTotal;
 	} // end purchaseGrocery
 	
@@ -286,16 +306,20 @@ public class Driver {
 		} while (groupOrder > 0); // end DO WHILE
 		return totalOrder;
 	} // End groupPurchase
+	
 	/*******************************************************************************************************
 	 * @author Omar
+	 * For viewing managers report, password protected.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 *******************************************************************************************************/
 	public static void getManagerReport (Item [] groceryArray)
 	{
-		char view;
-		String password;
+		char view; // variable for IF
+		char addInventory; // variable for IF add inventory
+		int importManual; // variable for IF import or manual input
+		String password; // manager password
 		
-		System.out.println ( "\nWould you like to see the manager's report?" );
+		System.out.println ( "\nWould you like to see the manager's report? (y or n): " );
 		view = input.next ( ).charAt ( 0 );
 		
 		if (view == 'y')
@@ -308,13 +332,62 @@ public class Driver {
 				System.out.println ( "Access Granted" );
 				System.out.println ( "Printing inventory:" );
 				printArray (groceryArray);
-			}
+				System.out.println ( "Add more inventory? (y or n): " );
+				addInventory = input.next ( ).charAt ( 0 );
+				if (addInventory == 'y')
+				{
+					System.out.println ( "Import File (1) or Add manually (2)?: " );
+					importManual = input.nextInt();
+					if (importManual == 1 )				
+					{
+						System.out.println ( "Importing inventory:" );
+						importList(groceryArray);
+					}
+					else if (importManual == 2)
+					{
+						
+					}
+						
+				} // end IF addInventory
+			} // end IF password
 			else
 			{
 				System.out.println ( "Access Denied" );
-			}	
-		}
+			} // end ELSE
+		} // end IF view 'yes'
 	} // End getManagerReport
+	
+	/*******************************************************************************************************
+	 * @author Josh
+	 * For importing inventory, password protected.
+	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
+	 *******************************************************************************************************/
+	public static void systemStartup (Item [] groceryArray)
+	{
+		char importInventory; // variable for IF import inventory
+		String password; // manager password
+		
+		System.out.println ( "\nImport Inventory? (y or n): ");
+		importInventory = input.next ( ).charAt ( 0 );
+		
+		if (importInventory == 'y')
+		{
+			System.out.println ( "Enter password:" );
+			password = input.next ( );
+	
+			if (password. equals("CSC160"))
+			{
+				System.out.println ( "Access Granted" );
+				System.out.println ( "Importing inventory:" );
+				importList(groceryArray);
+			} // end IF password
+			else
+			{
+				System.out.println ( "Access Denied" );
+			} // end ELSE
+		} // end IF importInventory 'yes'
+	} // End getManagerReport
+	
 	
 } // end of Driver class
 
