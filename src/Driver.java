@@ -317,7 +317,10 @@ public class Driver {
 		char view; // variable for IF
 		char addInventory; // variable for IF add inventory
 		int importManual; // variable for IF import or manual input
-		String password; // manager password
+		String password; // manager password ( CSC160 )
+		int index; // Array index of item to be ordered 
+		int newStock;
+		int currentStock;
 		
 		System.out.println ( "\nWould you like to see the manager's report? (y or n): " );
 		view = input.next ( ).charAt ( 0 );
@@ -345,7 +348,21 @@ public class Driver {
 					}
 					else if (importManual == 2)
 					{
+						groceryMenu (groceryArray);
 						
+						System.out.println ( "\nChoose menu # of item to be restocked:" );
+						index = input.nextInt ( );
+						index -= 1;
+						
+						System.out.println ("\n How many units would you like to order?:" );
+						newStock = input.nextInt ( );
+						
+						currentStock = groceryArray[index].getStock();
+						newStock += currentStock;
+						
+						groceryArray[index].setStock(newStock);
+						
+						printArray(groceryArray);
 					}
 						
 				} // end IF addInventory
