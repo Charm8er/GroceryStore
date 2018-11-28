@@ -308,7 +308,7 @@ public class Driver {
 	} // End groupPurchase
 	
 	/*******************************************************************************************************
-	 * @author Omar, Josh
+	 * @author Omar
 	 * For viewing managers report, password protected.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 *******************************************************************************************************/
@@ -330,12 +330,12 @@ public class Driver {
 				System.out.println ( "Access Granted" );
 				System.out.println ( "Printing inventory:" );
 				printArray (groceryArray);
-			}
+			} // end IF password
 			else
 			{
 				System.out.println ( "Access Denied" );
-			}	
-		}
+			}// end ELSE
+		} // end IF view 'yes'
 	} // End getManagerReport
 	
 	/*******************************************************************************************************
@@ -361,12 +361,12 @@ public class Driver {
 				System.out.println ( "Access Granted" );
 				System.out.println ( "Importing inventory:" );
 				importList(groceryArray);
-			}
+			} // end IF password
 			else
 			{
 				System.out.println ( "Access Denied" );
-			}	
-		}
+			} // end ELSE
+		} // end IF importInventory 'yes'
 	} // End getManagerReport
 	
 	
