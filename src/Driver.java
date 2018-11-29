@@ -11,6 +11,7 @@ public class Driver {
 	static Scanner input;
 	public static Scanner inputFile;
 	public static java.io.File inFile;
+	public static java.io.File outFile;
 	public static final int MAX = 20;
 	public static void main(String[] args) throws IOException
 	{
@@ -408,7 +409,14 @@ public class Driver {
 		} // end IF importInventory 'yes'
 	} // End getManagerReport
 	
-	
+	public static void outputFile () throws IOException
+	{
+		outFile = new java.io.File ("testfile");
+		java.io.PrintWriter fout = new java.io.PrintWriter(outFile);
+		fout.printf("here");
+		
+		fout.close();
+	}
 } // end of Driver class
 
 
