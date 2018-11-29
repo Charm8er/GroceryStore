@@ -238,49 +238,47 @@ public class Driver {
 		do
 		{
 			if (orderItem == 'y')
-		{
-			System.out.println("Enter Menu #: ");
-			addToOrder = input.nextInt();
-			addToOrder -= 1;
-			if (groceryArray [addToOrder] != null)
 			{
-				System.out.printf("%10s%10s%10.2f\n",
-				groceryArray[addToOrder].getName(),
-				groceryArray[addToOrder].getItemNum(),
-				groceryArray[addToOrder].getPrice());
-			} // end IF != null
-			System.out.println("\nEnter Quantity: ");
-			quantityToOrder = input.nextInt();
-		}
-		else
-		{
-			System.out.println("You must select a menu item to place an order. ");
-		} // end ELSE
-		if (quantityToOrder > groceryArray [addToOrder].getStock ( ))
-		{
-			stock = groceryArray[addToOrder].getStock ( );
-			salesIfInStock = quantityToOrder - stock;
-			System.out.println ( "\nInsufficent inventory to complete your order. " + stock + " " + groceryArray[addToOrder].getName ( ) +" currently in stock.");
-			groceryArray[addToOrder].getStock ( );
-			System.out.println ( "\nPlease enter a valid quantity: " );
-			quantityToOrder = input.nextInt ( );		
-		} // end IF order qty > qty in stock
-		
-		itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
-		System.out.printf("%10s%10s%10s%10.2f\n",
-		"Order Total: ", 				
-		groceryArray[addToOrder].getName(),
-		groceryArray[addToOrder].getItemNum(),
-		itemOrderTotal);
-		groceryArray[addToOrder].getStock();
-		
-		newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
-		groceryArray[addToOrder].setStock(newStock);
-		groceryArray[addToOrder].setNegStock(salesIfInStock);
-		
-		System.out.println ( "\nWould you like to buy another item? (y or n): " );
-		orderItem = input.next().charAt ( 0 );
-		grandTotal += itemOrderTotal;
+				System.out.println("Enter Menu #: ");
+				addToOrder = input.nextInt();
+				addToOrder -= 1;
+				if (groceryArray [addToOrder] != null)
+				{
+					System.out.printf("%10s%10s%10.2f\n",
+					groceryArray[addToOrder].getName(),
+					groceryArray[addToOrder].getItemNum(),
+					groceryArray[addToOrder].getPrice());
+				} // end IF != null
+				System.out.println("\nEnter Quantity: ");
+				quantityToOrder = input.nextInt();
+			}
+			else
+			{
+				System.out.println("You must select a menu item to place an order. ");
+			} // end ELSE
+			if (quantityToOrder > groceryArray [addToOrder].getStock ( ))
+				{
+					stock = groceryArray[addToOrder].getStock ( );
+					salesIfInStock = quantityToOrder - stock;
+					System.out.println ( "\nInsufficent inventory to complete your order. " + stock + " " + groceryArray[addToOrder].getName ( ) +" currently in stock.");
+					groceryArray[addToOrder].getStock ( );
+					System.out.println ( "\nPlease enter a valid quantity: " );
+					quantityToOrder = input.nextInt ( );		
+				} // end IF order qty > qty in stock
+			
+			itemOrderTotal = quantityToOrder * groceryArray[addToOrder].getPrice();
+			System.out.printf("%10s%10s%10s%10.2f\n",
+			"Order Total: ", 				
+			groceryArray[addToOrder].getName(),
+			groceryArray[addToOrder].getItemNum(),
+			itemOrderTotal); // End sysOut
+			groceryArray[addToOrder].getStock();
+			newStock = groceryArray[addToOrder].getStock() - quantityToOrder;
+			groceryArray[addToOrder].setStock(newStock);
+			groceryArray[addToOrder].setNegStock(salesIfInStock);
+			System.out.println ( "\nWould you like to buy another item? (y or n): " );
+			orderItem = input.next().charAt ( 0 );
+			grandTotal += itemOrderTotal;
 		}while (orderItem == 'y'); // end DO WHILE orderItem y
 		System.out.printf ("%10s%1.2f", "\nYour order total is: $", grandTotal);
 		System.out.println ( "\nThank you for shopping with us, please come again!" );
@@ -308,7 +306,7 @@ public class Driver {
 	} // End groupPurchase
 	
 	/*******************************************************************************************************
-	 * @author Omar
+	 * @author Omar, Contributors: Josh
 	 * For viewing managers report, password protected.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 *******************************************************************************************************/
@@ -319,9 +317,9 @@ public class Driver {
 		int importManual; // variable for IF import or manual input
 		String password; // manager password ( CSC160 )
 		int index; // Array index of item to be ordered 
-		int newStock;
-		int currentStock;
-		char order;
+		int currentStock; // Number of units currently in stock
+		int newStock; // Number of units in stock after ordering new inventory
+		char order; // LCV for do while loop
 		
 		System.out.println ( "\nWould you like to see the manager's report? (y or n): " );
 		view = input.next ( ).charAt ( 0 );
@@ -351,13 +349,11 @@ public class Driver {
 					{
 						do
 						{
-						
 							groceryMenu (groceryArray);
-						
 							System.out.println ( "\nChoose menu # of item to be restocked:" );
 							index = input.nextInt ( );
 							index -= 1;
-						
+		
 							System.out.println ("\n How many units would you like to order?:" );
 							newStock = input.nextInt ( );
 						
@@ -366,17 +362,12 @@ public class Driver {
 							
 							groceryArray[index].setStock(newStock);
 						
-							printArray(groceryArray);
+						//	printArray(groceryArray); // Used to make sure everything is working correctly
 							
 							System.out.println ("\n Would you lilke to place an order for another item? (y or n):" );
 							order = input.next ( ).charAt ( 0 );
-							
-							
 						} while (order == 'y');
-						
-					}
-					
-						
+					} // End else if		
 				} // end IF addInventory
 			} // end IF password
 			else
