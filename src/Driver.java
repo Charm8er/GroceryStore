@@ -321,6 +321,7 @@ public class Driver {
 		int index; // Array index of item to be ordered 
 		int newStock;
 		int currentStock;
+		char order;
 		
 		System.out.println ( "\nWould you like to see the manager's report? (y or n): " );
 		view = input.next ( ).charAt ( 0 );
@@ -348,22 +349,33 @@ public class Driver {
 					}
 					else if (importManual == 2)
 					{
-						groceryMenu (groceryArray);
+						do
+						{
 						
-						System.out.println ( "\nChoose menu # of item to be restocked:" );
-						index = input.nextInt ( );
-						index -= 1;
+							groceryMenu (groceryArray);
 						
-						System.out.println ("\n How many units would you like to order?:" );
-						newStock = input.nextInt ( );
+							System.out.println ( "\nChoose menu # of item to be restocked:" );
+							index = input.nextInt ( );
+							index -= 1;
 						
-						currentStock = groceryArray[index].getStock();
-						newStock += currentStock;
+							System.out.println ("\n How many units would you like to order?:" );
+							newStock = input.nextInt ( );
 						
-						groceryArray[index].setStock(newStock);
+							currentStock = groceryArray[index].getStock();
+							newStock += currentStock;
+							
+							groceryArray[index].setStock(newStock);
 						
-						printArray(groceryArray);
+							printArray(groceryArray);
+							
+							System.out.println ("\n Would you lilke to place an order for another item? (y or n):" );
+							order = input.next ( ).charAt ( 0 );
+							
+							
+						} while (order == 'y');
+						
 					}
+					
 						
 				} // end IF addInventory
 			} // end IF password
