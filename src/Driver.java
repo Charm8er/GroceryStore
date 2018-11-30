@@ -38,6 +38,7 @@ public class Driver {
 				{
 					totalOrder = groupPurchase(groceryArray);
 					dailySales += totalOrder;
+					System.out.println ( "" );
 					System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
 					System.out.println ( "\nMore customers? (y or n):" );
 					customer = input.next().charAt ( 0 );
@@ -352,7 +353,7 @@ public class Driver {
 			if (password. equals("CSC160"))
 			{
 				System.out.println ( "Access Granted" );
-				System.out.println ( "\nTotal sales for the day: " + dailySales );
+				System.out.printf ( "\nTotal sales for the day: %1.2f", dailySales );
 				System.out.println ( "\nPrinting inventory:\n" );
 				printArray (groceryArray);
 				System.out.println ( "\nAdd more inventory? (y or n): " );
