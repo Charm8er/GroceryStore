@@ -12,30 +12,49 @@ public class Driver {
 	public static Scanner inputFile;
 	public static java.io.File inFile;
 	public static java.io.File outFile;
-	public static final int MAX = 20;
+	public static final int MAX = 20; // Constant used to give array memory
 	public static void main(String[] args) throws IOException
 	{
-		char startPOS;
 		input = new Scanner (System.in);
 		inFile = new java.io.File("items");
 		inputFile = new Scanner(inFile);
 		
+		char startPOS; // Used to start the point of sale process
+		double totalOrder; // Total purchase value per group/customer
+		double dailySales = 0; // Holds the value for total daily sales
+		char shutDown; // LVC for do while loop
+		char customer = 'y'; // LVC for purchasing loop
 		Item [] groceryArray = new Item [MAX]; // Declaring and  initializing  array of grocery items
-		systemStartup (groceryArray);
+		importList(groceryArray); // Imports text file contents into grocerArry
 		
-		System.out.println( "Start POS System? (y or n): ");
-		startPOS = input.next ( ).charAt ( 0 );
-		if (startPOS == 'y')
+	//	systemStartup (groceryArray);
+		do
 		{
-			double totalOrder = groupPurchase(groceryArray);
-			System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
-		}
-		else
-		{
-			getManagerReport (groceryArray);
-		}
+			System.out.println( "Start POS System? (y or n): ");
+			startPOS = input.next ( ).charAt ( 0 );
+			if (startPOS == 'y')
+			{
+				while (customer == 'y')
+				{
+					totalOrder = groupPurchase(groceryArray);
+					dailySales += totalOrder;
+					System.out.printf("%10s%1.2f","Total Purchase: $", totalOrder);
+					System.out.println ( "\nMore customers? (y or n):" );
+					customer = input.next().charAt ( 0 );
+				}
+			}
+//		else
+//		{
+			getManagerReport (groceryArray, dailySales);
+//		}
+			
+			System.out.println ( "\nShut down terminal? (y or n):" );
+			shutDown = input.next ( ).charAt ( 0 );
+			dailySales = 0;
+		} while (shutDown == 'n');
+		System.out.println ( "Shutting down..." );
 		
-		getManagerReport (groceryArray);
+//		getManagerReport (groceryArray);
 		
 		
 //		puchaseGrocery(groceryArray);
@@ -160,8 +179,8 @@ public class Driver {
 		
 //		System.out.printf ( "%15s%10s%10s%10s%10s\n","Name", "Item #", "Price", "Weight", "Stock\n" );
 		
-		while(addItem == 'y') // Author Josh
-		{			
+//		while(addItem == 'y') // Author Josh
+//		{			
 			while (inputFile.hasNext()) // Author Omar
 			{
 				String name = inputFile.next ( ); // name of item
@@ -176,18 +195,18 @@ public class Driver {
 				index ++;
 			} // end WHILE hasNext
 			
-			while (addItem == 'y') // Author Josh
-			{	
-				Item newItem = new Item(); // Declaring Item object
-				System.out.println("\nAdd item manually? (y or n): ");
-				addItem = input.next().charAt(0);
-				if (addItem == 'y')
-				{
-					groceryArray [index] = createObject (newItem);
-					index++;					
-				} // end IF addItem y
-			} //end 2nd WHILE addItem y
-		} // end WHILE addItem y
+//			while (addItem == 'y') // Author Josh
+//			{	
+//				Item newItem = new Item(); // Declaring Item object
+//				System.out.println("\nAdd item manually? (y or n): ");
+//				addItem = input.next().charAt(0);
+//				if (addItem == 'y')
+//				{
+//					groceryArray [index] = createObject (newItem);
+//					index++;					
+//				} // end IF addItem y
+//			} //end 2nd WHILE addItem y
+//		} // end WHILE addItem y
 
 		inputFile.close ();
 	}
@@ -282,7 +301,7 @@ public class Driver {
 			grandTotal += itemOrderTotal;
 		}while (orderItem == 'y'); // end DO WHILE orderItem y
 		System.out.printf ("%10s%1.2f", "\nYour order total is: $", grandTotal);
-		System.out.println ( "\nThank you for shopping with us, please come again!" );
+//		System.out.println ( "\nThank you for shopping with us, please come again!" );
 //		System.out.println ( "\nPotential sales if items were in stock: \n" + salesIfInStock );
 		return grandTotal;
 	} // end purchaseGrocery
@@ -311,7 +330,7 @@ public class Driver {
 	 * For viewing managers report, password protected.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 *******************************************************************************************************/
-	public static void getManagerReport (Item [] groceryArray)
+	public static void getManagerReport (Item [] groceryArray, double dailySales)
 	{
 		char view; // variable for IF
 		char addInventory; // variable for IF add inventory
@@ -333,9 +352,10 @@ public class Driver {
 			if (password. equals("CSC160"))
 			{
 				System.out.println ( "Access Granted" );
-				System.out.println ( "Printing inventory:" );
+				System.out.println ( "\nTotal sales for the day: " + dailySales );
+				System.out.println ( "\nPrinting inventory:\n" );
 				printArray (groceryArray);
-				System.out.println ( "Add more inventory? (y or n): " );
+				System.out.println ( "\nAdd more inventory? (y or n): " );
 				addInventory = input.next ( ).charAt ( 0 );
 				if (addInventory == 'y')
 				{
@@ -354,22 +374,18 @@ public class Driver {
 							System.out.println ( "\nChoose menu # of item to be restocked:" );
 							index = input.nextInt ( );
 							index -= 1;
-		
-							System.out.println ("\n How many units would you like to order?:" );
+							System.out.println ("\nHow many units would you like to order?:" );
 							newStock = input.nextInt ( );
-						
 							currentStock = groceryArray[index].getStock();
 							newStock += currentStock;
-							
 							groceryArray[index].setStock(newStock);
-						
-						//	printArray(groceryArray); // Used to make sure everything is working correctly
-							
-							System.out.println ("\n Would you lilke to place an order for another item? (y or n):" );
+							printArray(groceryArray); // Used to make sure everything is working correctly
+							System.out.println ("\nWould you lilke to place an order for another item? (y or n):" );
 							order = input.next ( ).charAt ( 0 );
 						} while (order == 'y');
 					} // End else if		
 				} // end IF addInventory
+				System.out.println ( "Logging out of manager's report..." );
 			} // end IF password
 			else
 			{
