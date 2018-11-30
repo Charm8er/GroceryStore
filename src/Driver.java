@@ -63,7 +63,7 @@ public class Driver
 	 * @author Josh, Marcos, Omar
 	 * @param item / the item
 	 ********************************************************/
-	public static void printInventory(Item item)
+	public static void printInventory(Item item) // Author Josh
 	{
 		System.out.println("Name: " + item.getName ( ) + " " + " Stock: " + item.getStock( ));
 	} // end printInventory
@@ -74,7 +74,7 @@ public class Driver
 	 * @param newItem, Item class object (user will input data)
 	 * @return newItem
 	 ******************************************************************************/
-	public static Item createObject(Item newItem)
+	public static Item createObject(Item newItem) // Author Omar
 	{
 		String name; // Name of item
 		int itemNum; // Item number/bar code
@@ -116,7 +116,7 @@ public class Driver
 	 * This method prints the data members from the object
 	 * @param object1, Item whose data will be printed
 	 *********************************************************************/
-	public static void printData(Item object1)
+	public static void printData(Item object1) // Author Omar
 	{
 		System.out.println ( "Name: " + object1.getName ( ));
 		System.out.println ( "Item#: " + object1.getItemNum ( ));
@@ -149,7 +149,7 @@ public class Driver
 	 * This method imports "item" list and allows for user to manually input item.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 ******************************************************************************************************/
-	public static void importList(Item [] groceryArray) 
+	public static void importList(Item [] groceryArray) // Author Josh
 	{
 		Item arrayObject = new Item (); // Declaring object of item type, used to fill array
 		int index = 0; // array location
@@ -180,7 +180,7 @@ public class Driver
 	   * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	   * @throws FileNotFoundException
 	   ****************************************************************************************************/
-	public static void printWriter(Item [] groceryArray) throws FileNotFoundException
+	public static void printWriter(Item [] groceryArray) throws FileNotFoundException // Author Marcos, Contributors Josh, Omar
 	{
 		java.io.PrintWriter fout= new java.io.PrintWriter(outFile);
 		
@@ -320,7 +320,7 @@ public class Driver
 	 * For viewing managers report, password protected.
 	 * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
 	 *******************************************************************************************************/
-	public static void getManagerReport (Item [] groceryArray, double dailySales)
+	public static void getManagerReport (Item [] groceryArray, double dailySales) // Author Omar, Josh
 	{
 		char view; // variable for IF
 		char addInventory; // variable for IF add inventory
