@@ -6,8 +6,8 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class Driver {
-
+public class Driver 
+{
 	static Scanner input;
 	public static Scanner inputFile;
 	public static java.io.File inFile;
@@ -425,15 +425,26 @@ public class Driver {
 			} // end ELSE
 		} // end IF importInventory 'yes'
 	} // End getManagerReport
-	
-	public static void outputFile () throws IOException
+  /****************************************************************************************************
+	* @author Marcos
+   * @param groceryArray
+   * @throws FileNotFoundException
+	****************************************************************************************************/
+	public static void printWriter(Item [] groceryArray) throws FileNotFoundException
 	{
-		outFile = new java.io.File ("testfile");
-		java.io.PrintWriter fout = new java.io.PrintWriter(outFile);
-		fout.printf("here");
-		
+		java.io.PrintWriter fout= new java.io.PrintWriter(outFile);
+	
+		for (int i = 0;i<MAX;i++)
+		{
+			fout.println(groceryArray[i].getName());
+			fout.println(groceryArray[i].getItemNum());
+			fout.println(groceryArray[i].getPrice());
+			fout.println(groceryArray[i].getWeight());
+			fout.println(groceryArray[i].getStock());
+		}
 		fout.close();
-	}
+	} // End printWriter
+
 } // end of Driver class
 
 
