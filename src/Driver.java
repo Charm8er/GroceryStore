@@ -173,8 +173,32 @@ public class Driver
 				index ++;
 			} // end WHILE hasNext
 		inputFile.close ();
-	}
+	} // end importList
 
+	  /****************************************************************************************************
+	   * @author Marcos, Josh, Omar
+	   * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
+	   * @throws FileNotFoundException
+	   ****************************************************************************************************/
+	public static void printWriter(Item [] groceryArray) throws FileNotFoundException
+	{
+		java.io.PrintWriter fout= new java.io.PrintWriter(outFile);
+		
+		for (int i = 0;i<MAX;i++)
+		{
+			if (groceryArray[i] != null)
+			{
+				fout.println(groceryArray[i].getName());
+				fout.println(groceryArray[i].getItemNum());
+				fout.println(groceryArray[i].getPrice());
+				fout.println(groceryArray[i].getWeight());
+				fout.println(groceryArray[i].getStock());
+				fout.println(groceryArray[i].getNegStock());
+			}
+		}
+		fout.close();
+	} // end printWriter
+	
 	/******************************************************************************************************
 	 * @author Josh , Omar, Marcos
 	 * This method reads the groceryArray and displays a list for selection by customer.
@@ -182,7 +206,7 @@ public class Driver
 	 ******************************************************************************************************/
 	public static void groceryMenu ( Item [] groceryArray ) // Author Marcos, Contributor Josh
 	{
-		System.out.println("\n--------   GROCERY MENU   --------\n");
+		System.out.println("\n------------   GROCERY MENU   ------------\n");
 		System.out.printf ( "%10s%10s%10s%10s\n","Menu #","Name", "Item #", "Price\n" );
 		for (int i = 0; i < MAX; i++)
 		{
@@ -359,7 +383,7 @@ public class Driver
 								System.out.println ("\nWould you like to place an order for another item? (y or n):" );
 								order = input.next ( ).charAt ( 0 );
 							} while (order == 'y');
-						} // End else if		
+						} // end ELSE IF		
 					} // end IF addInventory
 					System.out.println( "Continue viewing report? (y or n): ");
 					view = input.next ( ).charAt ( 0 );
@@ -405,28 +429,6 @@ public class Driver
 //		} // end IF importInventory 'yes'
 //	} // End getManagerReport
 
-  /****************************************************************************************************
-   * @author Marcos, Josh, Omar
-   * @param groceryArray, array of grocery items (name, item number, price, weight(oz), amount in stock)
-   * @throws FileNotFoundException
-   ****************************************************************************************************/
-	public static void printWriter(Item [] groceryArray) throws FileNotFoundException
-	{
-		java.io.PrintWriter fout= new java.io.PrintWriter(outFile);
-		
-		for (int i = 0;i<MAX;i++)
-		{
-			if (groceryArray[i] != null)
-			{
-				fout.println(groceryArray[i].getName());
-				fout.println(groceryArray[i].getItemNum());
-				fout.println(groceryArray[i].getPrice());
-				fout.println(groceryArray[i].getWeight());
-				fout.println(groceryArray[i].getStock());
-				fout.println(groceryArray[i].getNegStock());
-			}
-		}
-		fout.close();
-	} // End printWriter
+
 } // end of Driver class
 
