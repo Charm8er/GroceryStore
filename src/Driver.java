@@ -396,6 +396,30 @@ public class Driver
 			} // end ELSE
 		} // end IF view 'yes'
 	} // End getManagerReport
+	/**********************************************************************************************
+	 * This method adds nodes to the linked list of items currently ordered
+	 * @param addToOrder
+	 * @param quantity
+	 * @param groceryArray
+	 */
+	public static void addLinkedList (int addToOrder, int quantity, Item [] groceryArray)
+	{
+
+		Node head;
+		Node newNode;
+		String orderNode;
+		LinkedList orderList = new LinkedList ();
+	
+		orderNode = groceryArray[addToOrder].getName ( );
+		
+		orderList.setHead ( new Node () );
+		orderList.getHead().setItemOrdered ( orderNode );
+		orderList.getHead ( ).setQuantity ( quantity );
+	
+		System.out.println ( "Printing current order" );
+		orderList.printLinkList ();
+		
+	} // End linkedList
 	
 //	/*******************************************************************************************************
 //	   DEPRECATED
